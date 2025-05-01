@@ -1,5 +1,7 @@
 import 'package:chweckoutpayment/Features/checkout/presentation/views/widgets/cart_info_item.dart';
+import 'package:chweckoutpayment/Features/checkout/presentation/views/widgets/total_price_widget.dart';
 import 'package:chweckoutpayment/core/uitls/styles.dart';
+import 'package:chweckoutpayment/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class MyCartViewBody extends StatelessWidget {
@@ -14,30 +16,41 @@ class MyCartViewBody extends StatelessWidget {
           const SizedBox(
             height: 18,
           ),
-          Image.asset('assets/images/basket_image.png'),
+          Expanded(
+              child: Image.asset('assets/images/basket_image.png')),
           const SizedBox(
             height: 25,
           ),
-          OrderInfoItem(
+          const OrderInfoItem(
             title: 'Order Subtotal',
             value: r'$42.97',
           ),
           const SizedBox(
             height: 3,
           ),
-          OrderInfoItem(
+          const OrderInfoItem(
             title: 'Discount',
             value: r'$0',
           ),
           const SizedBox(
             height: 3,
           ),
-          OrderInfoItem(
+          const OrderInfoItem(
             title: 'Shipping',
             value: r'$8',
           ),
+          const Divider(
+            thickness: 2,
+            // height: 34,
+            color: Color(0xffC7C7C7),
+          ),
+          const TotalPrice(title: 'Total', value: r'$50.97'),
           const SizedBox(
-            height: 3,
+              height: 16
+          ),
+          const CustomButton(),
+          const SizedBox(
+            height: 12,
           ),
         ],
       ),
