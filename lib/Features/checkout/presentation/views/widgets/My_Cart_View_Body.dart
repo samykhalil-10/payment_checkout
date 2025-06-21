@@ -1,3 +1,4 @@
+import 'package:chweckoutpayment/Features/checkout/presentation/views/payment_details.dart';
 import 'package:chweckoutpayment/Features/checkout/presentation/views/widgets/cart_info_item.dart';
 import 'package:chweckoutpayment/Features/checkout/presentation/views/widgets/total_price_widget.dart';
 import 'package:chweckoutpayment/core/uitls/styles.dart';
@@ -48,7 +49,14 @@ class MyCartViewBody extends StatelessWidget {
           const SizedBox(
               height: 16
           ),
-          const CustomButton(),
+          CustomButton(
+            onTap: ()
+            {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                return PaymentDetailsView();
+              }));
+            },
+          ),
           const SizedBox(
             height: 12,
           ),
