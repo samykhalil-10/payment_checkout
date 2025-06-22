@@ -1,5 +1,6 @@
 import 'package:chweckoutpayment/Features/checkout/presentation/views/payment_details.dart';
 import 'package:chweckoutpayment/Features/checkout/presentation/views/widgets/cart_info_item.dart';
+import 'package:chweckoutpayment/Features/checkout/presentation/views/widgets/payment_details_list_view.dart';
 import 'package:chweckoutpayment/Features/checkout/presentation/views/widgets/total_price_widget.dart';
 import 'package:chweckoutpayment/core/uitls/styles.dart';
 import 'package:chweckoutpayment/core/widgets/custom_button.dart';
@@ -17,8 +18,7 @@ class MyCartViewBody extends StatelessWidget {
           const SizedBox(
             height: 18,
           ),
-          Expanded(
-              child: Image.asset('assets/images/basket_image.png')),
+          Expanded(child: Image.asset('assets/images/basket_image.png')),
           const SizedBox(
             height: 25,
           ),
@@ -46,21 +46,51 @@ class MyCartViewBody extends StatelessWidget {
             color: Color(0xffC7C7C7),
           ),
           const TotalPrice(title: 'Total', value: r'$50.97'),
-          const SizedBox(
-              height: 16
-          ),
+          const SizedBox(height: 16),
           CustomButton(
             text: 'Complete Payment',
-            onTap: ()
-            {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                return PaymentDetailsView();
-              }));
+            onTap: () {
+              // Navigator.of(context).push(MaterialPageRoute(builder: (context){
+              //   return PaymentDetailsView();
+              // }));
+
+              showModalBottomSheet(
+                  context: context,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  builder: (context) {
+                    return const PaymentMethodsBottomSheet();
+                  });
             },
           ),
           const SizedBox(
             height: 12,
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class PaymentMethodsBottomSheet extends StatelessWidget {
+  const PaymentMethodsBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            height: 16,
+          ),
+          PaymentMethodsListView(),
+          SizedBox(
+            height: 32,
+          ),
+          CustomButton(text: 'Continue'),
         ],
       ),
     );
